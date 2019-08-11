@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 namespace DatingApp.Data
 {
     public class DataContext : DbContext
-    {
+    { 
         public DataContext(DbContextOptions<DataContext> options) : base (options)
         {
-        
+            
         }
-        public DbSet<DatingApp.Models.Value> Values { get; set; }
-        public DbSet<DatingApp.Models.User> Users {get; set; }
+        public DbSet<Value> Values { get; set; }
+        public DbSet<User> Users {get; set; }
     }
 }
