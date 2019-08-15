@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DatingApp.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace DatingApp.Data
 {
     public class AuthRepository : IAuthRepository
@@ -58,10 +59,16 @@ namespace DatingApp.Data
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-
         public async Task<bool> UserExists(string username)
         {
-            if(await _context.Users.AnyAsync(x => x.Username==username)){
+            System.Func<User,bool> expr1 = (User user) => {return user.Username == username;};
+            System.Linq.Expressions.Expression<Func<User, bool>> expr2 = (User user) => user.Username == username;
+            // Func<User, bool> deleg2 = expr.Compile();
+
+            // if(await _context.Users.AnyAsync((User user) => user.Username == username)){
+            // }
+
+            if (await _context.Users.AnyAsync(x => x.Username==username)){
                 return true;
             }
             else{
