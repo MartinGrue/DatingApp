@@ -1,0 +1,16 @@
+using System;
+
+namespace DatingApp.Models
+{
+    public class Photo
+    {
+        public int Id { get; set; }
+        public string Url { get; set; }
+        public string Destription { get; set; }
+        public DateTime DateAdded { get; set; }
+        public bool isMain { get; set; }
+
+        public User User { get; set; }
+        public int UserId { get; set; }
+    }
+}

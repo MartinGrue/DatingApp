@@ -21,8 +21,7 @@ namespace DatingApp.Data
             }
             if(!VerifyPasswordHash(password,user.PasswordHash, user.PasswordSalt)){
                 return null;
-            }
-            
+            }            
             return user;
         }
 

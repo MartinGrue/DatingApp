@@ -1,0 +1,7 @@
+.dropdown-toogl, .dropdown-item{
+    cursor: pointer;
+}
+::placeholder { 
+    color:hsl(321,12%,35%);
+    opacity: 0.5; /* Firefox */
+  }
