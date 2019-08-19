@@ -26,7 +26,7 @@ login(){
      {console.log(error);
       this.alertify.error(error);
      },
-     () => {this.router.navigate(['/members']);}
+     () => {this.router.navigate(['/member/edit']);}
      );
 }
 loggedIn(){
@@ -36,9 +36,9 @@ logout(){
  
   localStorage.removeItem('token');
   console.log('logged out');
- this.alertify.success('Logged out successfully');
- this.router.navigate(['/home']);
- console.log(localStorage.getItem('token'));
+  this.alertify.success('Logged out successfully');
+  this.router.navigate(['/home']);
+  console.log(localStorage.getItem('token'));
  console.log(this.authService.loggedIn());
 
 }
