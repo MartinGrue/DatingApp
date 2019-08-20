@@ -1,5 +1,6 @@
 .dropdown-toogl, .dropdown-item{
     cursor: pointer;
+    color: rgba(0,0,0);
 }
 ::placeholder { 
     color:hsl(321,12%,35%);

@@ -62,6 +62,7 @@ namespace DatingApp
             });
             services.AddTransient<Seed>();
             services.AddAutoMapper();
+            
 
         }
 
