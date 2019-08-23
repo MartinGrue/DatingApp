@@ -14,12 +14,12 @@ import { PrecentUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
     {
-        path: '', //nothing/mebers oder /nothing/message --> /members oder /message
+        path: '', // nothing/mebers oder /nothing/message --> /members oder /message
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            { path: 'members', component: MemberListComponent, resolve:{users: MemberListResolver}},
-            { path: 'members/:id', component: MemberDetailComponent, resolve:{user: MemberDetailResolver}},
+            { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
+            { path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
             { path: 'member/edit', component: MemberEditComponent,
              resolve:{user: MemberEditResolver},
             canDeactivate:[PrecentUnsavedChanges]},

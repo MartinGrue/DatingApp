@@ -31,7 +31,7 @@ export class MemberListComponent implements OnInit {
       });
       // this.users = this.route.data['users'];
 // this.users = this.route.snapshot.data['users'];
-      // console.log(this.route.snapshot.data['users']);
+      console.log(this.route.snapshot.data['users']);
       // this.loadUsers();
       // this.loadUsers2();
     }

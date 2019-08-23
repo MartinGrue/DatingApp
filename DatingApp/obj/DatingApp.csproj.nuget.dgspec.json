@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\me\\source\\repos\\DatingApp\\DatingApp\\DatingApp.csproj": {}
+    "D:\\DatingApp\\DatingApp\\DatingApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\me\\source\\repos\\DatingApp\\DatingApp\\DatingApp.csproj": {
+    "D:\\DatingApp\\DatingApp\\DatingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\me\\source\\repos\\DatingApp\\DatingApp\\DatingApp.csproj",
+        "projectUniqueName": "D:\\DatingApp\\DatingApp\\DatingApp.csproj",
         "projectName": "DatingApp",
-        "projectPath": "C:\\Users\\me\\source\\repos\\DatingApp\\DatingApp\\DatingApp.csproj",
+        "projectPath": "D:\\DatingApp\\DatingApp\\DatingApp.csproj",
         "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\me\\source\\repos\\DatingApp\\DatingApp\\obj\\",
+        "outputPath": "D:\\DatingApp\\DatingApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -44,6 +44,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[4.0.1, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.3.1, )"
             },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",

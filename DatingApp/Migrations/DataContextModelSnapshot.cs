@@ -23,7 +23,9 @@ namespace DatingApp.Migrations
 
                     b.Property<DateTime>("DateAdded");
 
-                    b.Property<string>("Destription");
+                    b.Property<string>("Description");
+
+                    b.Property<string>("PublicId");
 
                     b.Property<string>("Url");
 

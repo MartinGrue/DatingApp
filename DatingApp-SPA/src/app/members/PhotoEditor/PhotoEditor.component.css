@@ -1,0 +1,27 @@
+img.img-thumbnail{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    min-width: 100px !important;
+}
+div.col-sm-2{
+    min-width: 130px;
+    padding-top: 20px;
+    max-width: 200px !important;
+    margin-bottom: 2px auto;
+}
+.btn{
+margin: 2px;
+}
+.div.text-center{
+
+    margin-left: 20px, auto;
+    margin-right: auto;
+}
+.nv-file-over{
+    border: dotted 3px red;
+}
+input[type=file]{
+    color: transparent;
+}

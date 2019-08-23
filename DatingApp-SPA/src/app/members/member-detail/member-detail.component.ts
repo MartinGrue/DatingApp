@@ -28,10 +28,24 @@ export class MemberDetailComponent implements OnInit {
       {
           width: '500px',
           height: '500px',
+
           thumbnailsColumns: 4,
           imageAnimation: NgxGalleryAnimation.Slide,
           preview: false
-      }];
+      },
+      {
+        breakpoint: 1000,
+        width: '100%',
+        height: '600px',
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20
+       },
+       // max-width 400
+       {
+       breakpoint: 400,
+       preview: false
+       }];
       this.galleryImages = this.getImages();
   }
 getImages(){
@@ -41,7 +55,7 @@ getImages(){
                   small:this.user.photos[i].url,
                   medium:this.user.photos[i].url,
                   big:this.user.photos[i].url,
-                  description: this.user.photos[i].destription
+                  description: this.user.photos[i].description
     });
   }
   return imageUrls;

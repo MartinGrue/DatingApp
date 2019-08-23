@@ -15,15 +15,17 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editform: NgForm;
   @HostListener('window:beforeunload', ['$event'])
   user: User;
-
+  photoUrl: string;
   constructor(private route: ActivatedRoute,
-     private altertify: AlertifyService, private userService: UserService, private authService: AuthService) { }
+     private altertify: AlertifyService,
+      private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(
       data => { this.user = data['user']; }
     );
-    console.log(this.user); 
+    this.authService.currentPhotoUrl.subscribe(purl => {this.photoUrl = purl; });
+
    }
 
   unloadNotification($event: any) {
@@ -37,5 +39,8 @@ updateUser(){
              this.editform.reset(this.user); },
     error => {this.altertify.error(error); }
   );
+  }
+  updateMainPhoto(photourl){
+    this.user.photoUrl = photourl;
   }
 }

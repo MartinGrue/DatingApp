@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import { RouterModule } from '@angular/router';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -14,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -29,6 +31,7 @@ import { MemberListResolver } from './_resolver/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
 import { PrecentUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { PhotoEditorComponent } from './members/PhotoEditor/PhotoEditor.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -45,12 +48,14 @@ export function tokenGetter() {
       MessagesComponent,
       MemberCartComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       TabsModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
@@ -60,7 +65,9 @@ export function tokenGetter() {
            whitelistedDomains: ['localhost:5000']
          }
        }),
-       NgxGalleryModule
+       NgxGalleryModule,
+       FileUploadModule,
+       BsDatepickerModule.forRoot()
    ],
    providers: [
       AuthService,
