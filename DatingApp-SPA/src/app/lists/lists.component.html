@@ -1,7 +1,21 @@
-<div class="container">
+
+<div class="container mt-3">
+
   <div class="row">
-    <div class="col-lg-2 col-md-3 col-sm-6">
-      <p *ngFor="let user of users">{{user.knownAs}}</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="UsersThatLikedMe" (click)="loadUsers2()">Members who like me</button>
+      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="ILiked" (click)="loadUsers2()">Members who I like</button>
     </div>
   </div>
+
+  <br>
+
+  <div class="row">
+    <div *ngFor="let user of users" class="col-sm-6 col-md-4 col-lg-4 col-xl-2">
+      <app-member-cart [user]="user"></app-member-cart>
+    </div>
+  </div>
+
+
+
 </div>

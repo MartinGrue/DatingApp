@@ -1,0 +1,19 @@
+
+.formarea {
+    border-radius: 15px 15px 15px 15px;
+    padding: 25px;
+    text-align: center;
+    background-color: rgba(237, 237, 237, 0.9);
+    background-color: hsla(0, 0%, 93%, 0.9); 
+    color: rgb(255, 255, 255,1);
+  }
+  .invalid-feedback{
+      font-size: 120%;
+      color: rgb(255, 0, 0)
+  }
+  label{
+    color: rgb(0, 0, 0,1);
+}
+h2{
+    color: rgb(0, 0, 0,1);
+}

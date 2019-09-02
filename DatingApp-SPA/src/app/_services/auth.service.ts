@@ -53,6 +53,7 @@ loggedIn(){
   const token = localStorage.getItem('token');
   return !this.jwthelper.isTokenExpired(token);
 }
+
 }
 
 

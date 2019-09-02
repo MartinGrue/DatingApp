@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { Pagination, PaginatedResult } from '../_models/Pagination';
+import { AuthService } from '../_services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lists',
@@ -10,24 +13,41 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class ListsComponent implements OnInit {
 users: User[];
-// observer: any = {next: function(value: User[]){
-//   this.users = value;
-//   console.log(this.users);}};
+pagination: Pagination;
+likesParam: string;
 
-  constructor(private userService: UserService, private alertify: AlertifyService) { }
+  constructor(private authService: AuthService, private userService: UserService
+    , private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadUsers();
-    // this.loadUsers2();
+    this.route.data.subscribe(data => {
+      this.users = data['users'].result;
+      this.pagination = data['users'].pagination;
+    });
+    this.likesParam = 'UsersThatLikedMe';
   }
-
-
-  // loadUsers(){
-  //   this.userService.getUsers().subscribe(this.observer);
-  //   }
-  loadUsers(){
-    this.userService.getUsers().subscribe((Data: User[]) => {this.users = Data;},
-    error => {this.alertify.error(error);});
-
+  
+  loadUsers2() {
+    this.userService
+      .getUsers(
+        this.pagination.currentPage,
+        this.pagination.itemsPerPage,
+        null,
+        this.likesParam
+      )
+      .subscribe(
+        (result: PaginatedResult<User[]>) => {
+            this.users = result.result;
+          this.pagination = result.pagination;
+        },
+        error => {
+          this.alertify.error(error);
+        }
+      );
+  }
+  onScroll() {
+    console.log('scrolled!!!!');
+    this.pagination.currentPage = this.pagination.currentPage + 1;
+    this.loadUsers2();
   }
 }

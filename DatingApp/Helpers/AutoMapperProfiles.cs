@@ -9,6 +9,8 @@ namespace DatingApp.Helpers
     {
         public AutoMapperProfiles()
         {
+            //The first arg in <> is the source; the sencond arg in the <> is the destination
+
             CreateMap<User, UserForListDto>()
             .ForMember(dest => dest.PhotoUrl, opt =>
             {
@@ -36,6 +38,19 @@ namespace DatingApp.Helpers
             CreateMap<Photo, PhotoForReturnDto>();
 
             CreateMap<UserForRegisterDto, User>();
+
+            CreateMap<MessageForCreationDto, Message>().ReverseMap();
+            //this map is used in the getMessage controller method and no MessageForReturnDto is used there.
+            //instead MessageForCreationDto is for input and output 
+
+            //The MessageForReturnDto is used for GetMessageForUser coontroller method
+
+            CreateMap<Message, MessageForReturnDto>()
+            .ForMember(m => m.SenderPhotoUrl, opt => opt
+            .MapFrom(u => u.Sender.Photos.FirstOrDefault(p => p.isMain).Url))
+
+            .ForMember(m => m.RecipientPhotoUrl, opt => opt
+            .MapFrom(u => u.Recipient.Photos.FirstOrDefault(p => p.isMain).Url));
         }
     }
 }

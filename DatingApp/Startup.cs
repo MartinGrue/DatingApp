@@ -26,6 +26,7 @@ namespace DatingApp
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,11 +37,10 @@ namespace DatingApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             // Action<DbContextOptionsBuilder> dbaction;
             // dbaction = x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             // services.AddDbContext<DataContext>(dbaction);
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(x => {x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));});
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
@@ -93,7 +93,10 @@ namespace DatingApp
             //app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseMvc(routes => routes.MapSpaFallbackRoute(name: "spa-fallback",
+            defaults: new { controller = "Fallback", action = "Index"}));
 
             // seeder.SeedUsers();
         }

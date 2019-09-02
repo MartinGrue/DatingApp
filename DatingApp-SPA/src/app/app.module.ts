@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import {TimeAgoPipe} from 'time-ago-pipe';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -17,7 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -33,6 +34,14 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
 import { PrecentUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/PhotoEditor/PhotoEditor.component';
+import { ListResolver } from './_resolver/lists.resolver';
+import { MessageResolver } from './_resolver/messages.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { OwlModule } from 'ngx-owl-carousel';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -51,7 +60,8 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      TimeAgoPipe
+      TimeAgoPipe,
+      MemberMessagesComponent,
    ],
    imports: [
       BrowserModule,
@@ -69,7 +79,14 @@ export function tokenGetter() {
        }),
        NgxGalleryModule,
        FileUploadModule,
-       BsDatepickerModule.forRoot()
+       BsDatepickerModule.forRoot(),
+       PaginationModule.forRoot(),
+       InfiniteScrollModule,
+       ButtonsModule.forRoot(),
+       BrowserAnimationsModule,
+       OwlModule,
+       CarouselModule.forRoot(),
+       CollapseModule.forRoot()
    ],
    providers: [
       AuthService,
@@ -80,7 +97,9 @@ export function tokenGetter() {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
-      PrecentUnsavedChanges
+      PrecentUnsavedChanges,
+      ListResolver,
+      MessageResolver
    ],
    bootstrap: [
       AppComponent

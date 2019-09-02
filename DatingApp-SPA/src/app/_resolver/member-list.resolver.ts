@@ -7,16 +7,30 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class MemberListResolver implements Resolve<User []> {
+export class MemberListResolver implements Resolve<User[]> {
+  pageNumber = 1;
+  pageSize = 20;
+  constructor(
+    private userservice: UserService,
+    private router: Router,
+    private altertify: AlertifyService
+  ) {}
 
-    constructor(private userservice: UserService,
-         private router: Router, private altertify: AlertifyService){}
-
-    resolve(route: ActivatedRouteSnapshot): Observable<User []>{
-             return this.userservice.getUsers().pipe(catchError(error => {
-                 this.altertify.error('Problem with getting data');
-                 this.router.navigate(['/home']);
-                 return of(null);
-             }));
-         }
+  // before pagination
+  // resolve(route: ActivatedRouteSnapshot): Observable<User []>{
+  //          return this.userservice.getUsers().pipe(catchError(error => {
+  //              this.altertify.error('Problem with getting data');
+  //              this.router.navigate(['/home']);
+  //              return of(null);
+  //          }));
+  //      }
+  resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
+    return this.userservice.getUsers(this.pageNumber, this.pageSize).pipe(
+      catchError(error => {
+        this.altertify.error('Problem with getting data');
+        this.router.navigate(['/home']);
+        return of(null);
+      })
+    );
+  }
 }

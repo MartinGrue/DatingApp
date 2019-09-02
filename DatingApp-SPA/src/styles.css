@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/bootswatch/dist/lumen/bootstrap.min.css';
 
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
@@ -25,3 +24,15 @@
     border-top: 1px solid #eee;
     padding: 15px 0;
   }
+/* .slide{
+  visibility: hidden;
+} */
+.carousel-control-prev{
+  visibility: hidden;
+}
+.carousel-control-next{
+  visibility: hidden;
+}
+.carousel-indicators{
+  visibility: hidden;
+}
