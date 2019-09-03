@@ -20,7 +20,7 @@ margin: 2px;
     margin-right: auto;
 }
 .nv-file-over{
-    border: dotted 3px red;
+    border: dotted 3px black;
 }
 input[type=file]{
     color: transparent;

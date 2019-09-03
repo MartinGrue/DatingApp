@@ -15,7 +15,7 @@ export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
   @Output() getMemberPhotoChange = new EventEmitter<string>();
   uploader: FileUploader;
-  hasBaseDropZoneOver: boolean = false;
+  hasBaseDropZoneOver: boolean = true;
   baseUrl = environment.apiUrl;
   currentMainPhoto: Photo;
 
