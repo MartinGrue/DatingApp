@@ -71,6 +71,7 @@ namespace DatingApp
             // Action<DbContextOptionsBuilder> dbaction;
             // dbaction = x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             // services.AddDbContext<DataContext>(dbaction);
+            
             services.AddDbContext<DataContext>(x => {x.UseMySql(Configuration.GetConnectionString("DefaultConnection"));});
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -122,14 +123,13 @@ namespace DatingApp
                 // app.UseHsts();
             }
             //app.UseHttpsRedirection();
+            seeder.SeedUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             app.UseDefaultFiles(); 
             app.UseStaticFiles();
             app.UseMvc(routes => routes.MapSpaFallbackRoute(name: "spa-fallback",
             defaults: new { controller = "Fallback", action = "Index"}));
-
-            // seeder.SeedUsers();
         }
     }
 }
