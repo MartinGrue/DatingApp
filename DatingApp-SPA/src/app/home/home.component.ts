@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   registerMode = false;
   values: any;
   valuesfrominput: any;
-  isCollapsed = false;
+  isCollapsed = true;
 
   constructor(private http: HttpClient) {}
 

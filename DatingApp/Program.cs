@@ -27,7 +27,10 @@ namespace DatingApp
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.Migrate();
                     var seeder = services.GetRequiredService<Seed>();
+                    
                     seeder.SeedUsers();
+                    seeder.SeedLikes();
+                    seeder.SeedMessages();
                 }
                 catch (Exception ex)
                 {
@@ -39,6 +42,9 @@ namespace DatingApp
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().UseUrls("http://*:5000");
+            WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            // .UseUrls("http://*:5000")
+            ;
     }
 }

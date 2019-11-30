@@ -23,66 +23,70 @@
   <carousel>
     <slide>
       <img
-        class="img-responsive center-block"
+        class="mx-auto"
         src="assets/beach-couple-couples-1024963_crop.jpg"
         alt="first slide"
-        style="display: block; width: 100%; height: 100%;"
+        style="display: block; width: 100vw; height: 100vh; object-fit: cover;"
       />
     </slide>
     <slide>
       <img
-        class="img-responsive center-block"
+        class="mx-auto"
         src="assets/backlit-couple-dawn-1824684_crop.jpg"
         alt="second slide"
-        style="display: block; width: 100%;"
+        style="display: block; width: 100vw; height: 100vh; object-fit: cover;"
       />
     </slide>
     <slide>
       <img
-        class="img-responsive center-block"
+        class="mx-auto"
         src="assets/affection-couple-dawn-2527712_crop.jpg"
         alt="third slide"
-        style="display: block; width: 100%;"
+        style="display: block; width: 100vw; height: 100vh; object-fit: cover;"
       />
     </slide>
   </carousel>
 
-  <div class="vertical-center">
-    <div class="container-fluid">
+  <div class="vertical-center" >
+    <div class="container-fluid" >
       <div class="row justify-content-center">
         <div *ngIf="!registerMode" style="text-align: center">
-          <h1>Find your match</h1>
-          <p class="lead">
-            Come on in to view your matches... All you need to do is sign up!
-          </p>
-          <div class="text-center">
-            <button
-              class="btn btn-primary btn-lg mr-2"
-              (click)="registertoggle()"
-            >
-              Register
-            </button>
-            <button class="btn btn-info btn-lg">Learn more</button>
-          </div>
-          <button
-            style="position: relative;"
-            type="button"
-            class="btn btn-primary"
-            (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed"
-            aria-controls="collapseBasic"
-            id="DevInfo"
-          >
-            Show Dev Info
-          </button>
-          <div id="collapseBasic" [collapse]="isCollapsed">
-            <div class="well well-md card card-block card-header mb-4">
-              <p class="lead">This is a demo single page application</p>
-              <p class="lead">Every user has the password: password</p>
-              <p class="lead">
-                Login with user: Bright, Katrina, erna or marlene or any other
-                user you see under the Matches tab
-              </p>
+          <div>
+            <h1>Find your match</h1>
+            <p class="lead">
+              Come on in to view your matches... All you need to do is sign up!
+            </p>
+            <div class="text-center">
+              <button
+                class="btn btn-primary btn-lg mr-2"
+                (click)="registertoggle()"
+              >
+                Register
+              </button>
+              <button class="btn btn-info btn-lg">Learn more</button>
+            </div>
+            <div class="text-center" style="padding-top: 20px;">
+              <button
+                style="position: relative;"
+                type="button"
+                class="btn btn-primary"
+                (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseBasic"
+                id="DevInfo"
+              >
+                Show Dev Info
+              </button>
+            </div>
+            <div id="collapseBasic" [collapse]="isCollapsed">
+              <div class="well well-md card card-block card-header mb-4">
+                <p class="lead">This is a demo single page application</p>
+                <p class="lead">Every user has the password: password</p>
+                <p class="lead">
+                  Login with user: Nichole, Brandie, Nona or any other
+                  user you see under the Matches tab
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -94,11 +98,10 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- <div class="row">
+  <!-- <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-22"> -->
-<!-- <div *ngIf="!registerMode" style="display: block;  width: 50%; margin-left: auto;
+  <!-- <div *ngIf="!registerMode" style="display: block;  width: 50%; margin-left: auto;
 margin-right: auto;"><carousel>
     <slide>
       <img src="assets/affair-anniversary-asad-1024960.jpg" alt="first slide" style="display: block; width: 100%;">
@@ -117,3 +120,4 @@ margin-right: auto;"><carousel>
 
   </div>
 </div> -->
+</div>
