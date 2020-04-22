@@ -16,19 +16,26 @@ namespace DatingApp.Helpers
             {
                 opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.isMain).Url);
             })
-            .ForMember(dest => dest.Age, opt =>
-            {
-                opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
-            })
+            .ForMember(dest => dest.Age,
+            map => map.MapFrom((s, d) => s.DateOfBirth.CalculateAge())
+            // ,opt =>
+            // {
+            //     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
+            // }
+            )
             ;
             CreateMap<User, USerForDetailedDto>().ForMember(dest => dest.PhotoUrl, opt =>
             {
                 opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.isMain).Url);
             })
-            .ForMember(dest => dest.Age, opt =>
-            {
-                opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
-            })
+            .ForMember(dest => dest.Age,
+            map => map.MapFrom((s, d) => s.DateOfBirth.CalculateAge())
+
+            // , opt =>
+            // {
+            //     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
+            // }
+            )
             ;
 
             CreateMap<UserForUpdateDto, User>();

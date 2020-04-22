@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace DatingApp
@@ -17,7 +18,7 @@ namespace DatingApp
     {
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).Build();
 
             using (IServiceScope scope = host.Services.CreateScope())
             {
@@ -27,7 +28,7 @@ namespace DatingApp
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.Migrate();
                     var seeder = services.GetRequiredService<Seed>();
-                    
+
                     seeder.SeedUsers();
                     seeder.SeedLikes();
                     seeder.SeedMessages();
@@ -41,10 +42,12 @@ namespace DatingApp
             host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-            .UseStartup<Startup>()
-            .UseUrls("http://*:5000")
-            ;
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webbuilder =>
+            {
+                webbuilder.UseStartup<Startup>()
+                .UseUrls("http://*:5000");
+            });
+
     }
 }
