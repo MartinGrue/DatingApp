@@ -12,8 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.Controllers
 {
-    [ServiceFilter(typeof(LogUserActivity))]
-    [Authorize]
+
     [Route("api/users/{userId}/[controller]")]
     [ApiController]
 
@@ -67,9 +66,10 @@ namespace DatingApp.Controllers
             if (await _repo.SaveAll())
             {
                 var messageToReturn = _mapper.Map<MessageForReturnDto>(message);
-                return CreatedAtRoute("GetMessage", new { id = message.Id }, messageToReturn);
+                return CreatedAtRoute("GetMessage", new {userId = userId, id = message.Id }, messageToReturn);
             }
-            throw new Exception("Creating the message failed on save");
+            // throw new Exception("Creating the message failed on save");
+            return Ok();
 
         }
 
