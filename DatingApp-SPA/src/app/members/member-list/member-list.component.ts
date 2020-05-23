@@ -19,7 +19,7 @@ export class MemberListComponent implements OnInit {
   observer_for_route: any = {
     next: function(value: User[]) {
       this.users = value;
-      console.log(this.users);
+      // console.log(this.users);
     }
   };
   user: User = JSON.parse(localStorage.getItem('user'));
@@ -126,7 +126,7 @@ export class MemberListComponent implements OnInit {
       );
   }
   onScroll() {
-    console.log('scrolled!!!!');
+    // console.log('scrolled!!!!');
     this.pagination.currentPage = this.pagination.currentPage + 1;
     this.loadUsers2();
     // this.users.push(this.users[0],this.users[0],this.users[0],this.users[0],this.users[0],this.users[0],this.users[0]);

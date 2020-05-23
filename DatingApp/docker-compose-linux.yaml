@@ -2,6 +2,14 @@ version: "3.1"
 networks:
   frontendDating:
 services:
+  app:
+    build: .
+    container_name: datingapp
+    networks:
+      - frontendDating
+    ports: 
+      - "5000:5000"
+
   db:
     image: mysql
     container_name: datingdb
@@ -12,14 +20,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     volumes:
-      - .\database_setup.sql:/docker-entrypoint-initdb.d/database_setup.sql
-      - .\dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./database_setup.sql:/docker-entrypoint-initdb.d/database_setup.sql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
       MYSQL_ROOT_PASSWORD: example
-  app:
-    build: .
-    container_name: datingapp
-    networks:
-      - frontendDating
-    ports: 
-      - "5000:5000"
