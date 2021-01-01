@@ -1,19 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TabsetComponent } from 'ngx-bootstrap';
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
-import { User } from 'src/app/_models/user';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { UserService } from 'src/app/_services/user.service';
-import { AuthService } from 'src/app/_services/auth.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { TabsetComponent } from "ngx-bootstrap/tabs";
+import {
+  NgxGalleryAnimation,
+  NgxGalleryImage,
+  NgxGalleryOptions,
+} from "@kolkov/ngx-gallery";
+import { User } from "src/app/_models/user";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { UserService } from "src/app/_services/user.service";
+import { AuthService } from "src/app/_services/auth.service";
 
 @Component({
-  selector: 'app-member-detail',
-  templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  selector: "app-member-detail",
+  templateUrl: "./member-detail.component.html",
+  styleUrls: ["./member-detail.component.css"],
 })
 export class MemberDetailComponent implements OnInit {
-  @ViewChild('memberTabs') membertabs: TabsetComponent;
+  @ViewChild("memberTabs") membertabs: TabsetComponent;
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -26,36 +30,36 @@ export class MemberDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.user = data['user'];
+    this.route.data.subscribe((data) => {
+      this.user = data["user"];
     });
-    this.route.queryParams.subscribe(params => {
-      const selectedTab = params['tab'];
+    this.route.queryParams.subscribe((params) => {
+      const selectedTab = params["tab"];
       this.membertabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
     });
 
     this.galleryOptions = [
       {
-        width: '500px',
-        height: '500px',
+        width: "500px",
+        height: "500px",
 
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide,
-        preview: false
+        preview: false,
       },
       {
         breakpoint: 1000,
-        width: '100%',
-        height: '600px',
+        width: "100%",
+        height: "600px",
         thumbnailsPercent: 20,
         thumbnailsMargin: 20,
-        thumbnailMargin: 20
+        thumbnailMargin: 20,
       },
       // max-width 400
       {
         breakpoint: 400,
-        preview: false
-      }
+        preview: false,
+      },
     ];
     this.galleryImages = this.getImages();
   }
@@ -66,7 +70,7 @@ export class MemberDetailComponent implements OnInit {
         small: this.user.photos[i].url,
         medium: this.user.photos[i].url,
         big: this.user.photos[i].url,
-        description: this.user.photos[i].description
+        description: this.user.photos[i].description,
       });
     }
     return imageUrls;
@@ -82,10 +86,10 @@ export class MemberDetailComponent implements OnInit {
     this.userService
       .sendlikes(this.authService.decodedToken.nameid, recipientId)
       .subscribe(
-        data => {
-          this.altertify.success('You have liked ' + this.user.knownAs);
+        (data) => {
+          this.altertify.success("You have liked " + this.user.knownAs);
         },
-        error => {
+        (error) => {
           this.altertify.error(error);
         }
       );
