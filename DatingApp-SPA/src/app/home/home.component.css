@@ -1,6 +1,5 @@
 .vertical-center {
   min-height: 100%;
-
   display: flex;
   align-items: center;
   position: absolute;
@@ -21,7 +20,7 @@ p {
   color: white;
 }
 #myCarousel {
-  position: fixed;
+  position: sticky;
 }
 
 strong {
