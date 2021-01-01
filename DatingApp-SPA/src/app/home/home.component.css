@@ -21,7 +21,7 @@ p {
   color: white;
 }
 #myCarousel {
-  position: relative;
+  position: fixed;
 }
 
 strong {
