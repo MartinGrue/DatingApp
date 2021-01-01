@@ -19,8 +19,13 @@ h1,
 p {
   color: white;
 }
+@media (max-width: 600px) {
+  #myCarousel {
+    position: relative !important;
+  }
+}
 #myCarousel {
-  position: sticky;
+  position: fixed;
 }
 
 strong {
