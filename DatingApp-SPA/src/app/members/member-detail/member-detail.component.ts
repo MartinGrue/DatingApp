@@ -17,7 +17,7 @@ import { AuthService } from "src/app/_services/auth.service";
   styleUrls: ["./member-detail.component.css"],
 })
 export class MemberDetailComponent implements OnInit {
-  @ViewChild("memberTabs") membertabs: TabsetComponent;
+  @ViewChild("memberTabs", {static: true}) membertabs: TabsetComponent;
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -35,6 +35,8 @@ export class MemberDetailComponent implements OnInit {
     });
     this.route.queryParams.subscribe((params) => {
       const selectedTab = params["tab"];
+      console.log(selectedTab);
+      console.log(this.membertabs);
       this.membertabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
     });
 
@@ -63,6 +65,7 @@ export class MemberDetailComponent implements OnInit {
     ];
     this.galleryImages = this.getImages();
   }
+  ngAfterViewInit() {}
   getImages() {
     const imageUrls = [];
     for (let i = 0; i < this.user.photos.length; i++) {
