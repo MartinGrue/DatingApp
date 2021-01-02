@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+COPY *.csproj .
+RUN dotnet restore
+
+# Copy everything else and build
+COPY . .
+RUN dotnet publish -c Debug -r alpine-x64 --self-contained true /p:PublishTrimmed=true -o /out
+
+FROM alpine:latest
+ARG USER=default
+ENV HOME /home/$USER
+RUN adduser -D $USER
+
+# Add some libs required by .NET runtime 
+RUN apk add --no-cache libstdc++ libintl icu
+EXPOSE 80
+EXPOSE 443
+WORKDIR /app
+COPY --from=build /out ./
+USER $USER
+# Run .net as elf 64-bit binary
+ENTRYPOINT ["./DatingApp"]
