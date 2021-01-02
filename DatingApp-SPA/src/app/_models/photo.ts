@@ -1,9 +1,9 @@
-import { User } from './user';
+import { User } from "./user";
 
 export interface Photo {
-    id: number;
-    url: string;
-    description: string;
-    dateAdded: Date;
-    isMain: boolean;
+  id: number;
+  url: string;
+  description: string;
+  dateAdded: Date;
+  isMain: boolean;
 }

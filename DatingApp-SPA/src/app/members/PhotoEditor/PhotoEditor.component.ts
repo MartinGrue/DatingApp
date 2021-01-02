@@ -1,15 +1,15 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Photo } from 'src/app/_models/photo';
-import { FileUploader } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/_services/auth.service';
-import { UserService } from 'src/app/_services/user.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
+import { Photo } from "src/app/_models/photo";
+import { FileUploader } from "ng2-file-upload";
+import { environment } from "src/environments/environment";
+import { AuthService } from "src/app/_services/auth.service";
+import { UserService } from "src/app/_services/user.service";
+import { AlertifyService } from "src/app/_services/alertify.service";
 
 @Component({
-  selector: 'app-PhotoEditor',
-  templateUrl: './PhotoEditor.component.html',
-  styleUrls: ['./PhotoEditor.component.css']
+  selector: "app-PhotoEditor",
+  templateUrl: "./PhotoEditor.component.html",
+  styleUrls: ["./PhotoEditor.component.css"],
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
@@ -35,17 +35,17 @@ export class PhotoEditorComponent implements OnInit {
     this.uploader = new FileUploader({
       url:
         this.baseUrl +
-        'users/' +
+        "users/" +
         this.authservice.decodedToken.nameid +
-        '/photos',
-      authToken: 'Bearer ' + localStorage.getItem('token'),
+        "/photos",
+      authToken: "Bearer " + localStorage.getItem("token"),
       isHTML5: true,
-      allowedFileType: ['image'],
+      allowedFileType: ["image"],
       removeAfterUpload: true,
       autoUpload: false,
-      maxFileSize: 10 * 1024 * 1024
+      maxFileSize: 10 * 1024 * 1024,
     });
-    this.uploader.onAfterAddingFile = file => {
+    this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
     };
     this.uploader.onSuccessItem = (item, response, status, headers) => {
@@ -56,14 +56,14 @@ export class PhotoEditorComponent implements OnInit {
           url: res.url,
           dateAdded: res.dateAdded,
           description: res.description,
-          isMain: res.isMain
+          isMain: res.isMain,
         };
         this.photos.push(photo);
         if (photo.isMain) {
           this.authservice.changeMemberPhoto(photo.url);
           this.authservice.Currentuser.photoUrl = photo.url;
           localStorage.setItem(
-            'user',
+            "user",
             JSON.stringify(this.authservice.Currentuser)
           );
         }
@@ -77,33 +77,38 @@ export class PhotoEditorComponent implements OnInit {
       .subscribe(
         () => {
           // console.log('Main updated');
-          this.currentMainPhoto = this.photos.filter(p => p.isMain === true)[0];
+          this.currentMainPhoto = this.photos.filter(
+            (p) => p.isMain === true
+          )[0];
           this.currentMainPhoto.isMain = false;
           mainPhoto.isMain = true;
           this.authservice.changeMemberPhoto(mainPhoto.url);
 
           this.authservice.Currentuser.photoUrl = mainPhoto.url;
           localStorage.setItem(
-            'user',
+            "user",
             JSON.stringify(this.authservice.Currentuser)
           );
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );
   }
   DeletePhoto(photoId: number) {
-    this.alertify.confirm('Are you sure?', () => {
+    this.alertify.confirm("Are you sure?", () => {
       this.userService
         .deletePhoto(photoId, this.authservice.decodedToken.nameid)
         .subscribe(
           () => {
-            this.photos.splice(this.photos.findIndex(p => p.id === photoId), 1);
-            this.alertify.success('Photo has been deleted');
+            this.photos.splice(
+              this.photos.findIndex((p) => p.id === photoId),
+              1
+            );
+            this.alertify.success("Photo has been deleted");
           },
-          error => {
-            this.alertify.error('failed to delete the photo');
+          (error) => {
+            this.alertify.error("failed to delete the photo");
           }
         );
     });

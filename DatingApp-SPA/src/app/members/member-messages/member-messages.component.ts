@@ -1,14 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Message } from 'src/app/_models/message';
-import { UserService } from 'src/app/_services/user.service';
-import { AuthService } from 'src/app/_services/auth.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { tap } from 'rxjs/operators';
+import { Component, OnInit, Input } from "@angular/core";
+import { Message } from "src/app/_models/message";
+import { UserService } from "src/app/_services/user.service";
+import { AuthService } from "src/app/_services/auth.service";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { tap } from "rxjs/operators";
 
 @Component({
-  selector: 'app-member-messages',
-  templateUrl: './member-messages.component.html',
-  styleUrls: ['./member-messages.component.css']
+  selector: "app-member-messages",
+  templateUrl: "./member-messages.component.html",
+  styleUrls: ["./member-messages.component.css"],
 })
 export class MemberMessagesComponent implements OnInit {
   @Input() recipientId: number;
@@ -29,7 +29,7 @@ export class MemberMessagesComponent implements OnInit {
     this.userService
       .getMessageThread(this.authService.decodedToken.nameid, this.recipientId)
       .pipe(
-        tap(messages => {
+        tap((messages) => {
           for (let i = 0; i < messages.length; i++) {
             if (
               messages[i].isRead === false &&
@@ -41,11 +41,11 @@ export class MemberMessagesComponent implements OnInit {
         })
       )
       .subscribe(
-        data => {
+        (data) => {
           this.messages = data;
           console.log(this.messages);
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );
@@ -58,9 +58,9 @@ export class MemberMessagesComponent implements OnInit {
       .subscribe(
         (message: Message) => {
           this.messages.unshift(message); //added to the array
-          this.newMessage.content = '';
+          this.newMessage.content = "";
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );

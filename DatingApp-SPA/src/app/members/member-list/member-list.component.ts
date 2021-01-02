@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/_models/user';
-import { UserService } from 'src/app/_services/user.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
-import { Pagination, PaginatedResult } from 'src/app/_models/Pagination';
+import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/_models/user";
+import { UserService } from "src/app/_services/user.service";
+import { AlertifyService } from "src/app/_services/alertify.service";
+import { ActivatedRoute } from "@angular/router";
+import { Pagination, PaginatedResult } from "src/app/_models/Pagination";
 
 @Component({
-  selector: 'app-member-list',
-  templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.css']
+  selector: "app-member-list",
+  templateUrl: "./member-list.component.html",
+  styleUrls: ["./member-list.component.css"],
 })
 export class MemberListComponent implements OnInit {
   users: User[];
@@ -17,15 +17,15 @@ export class MemberListComponent implements OnInit {
   //   this.users = value;
   //   console.log(this.users);}};
   observer_for_route: any = {
-    next: function(value: User[]) {
+    next: function (value: User[]) {
       this.users = value;
       // console.log(this.users);
-    }
+    },
   };
-  user: User = JSON.parse(localStorage.getItem('user'));
+  user: User = JSON.parse(localStorage.getItem("user"));
   genderList = [
-    { value: 'male', display: 'Males' },
-    { value: 'female', display: 'Females' }
+    { value: "male", display: "Males" },
+    { value: "female", display: "Females" },
   ];
   userParams: any = {};
 
@@ -49,19 +49,19 @@ export class MemberListComponent implements OnInit {
     // this.loadUsers2();
 
     //after pagnation
-    this.route.data.subscribe(data => {
-      this.users = data['users'].result;
-      this.pagination = data['users'].pagination;
+    this.route.data.subscribe((data) => {
+      this.users = data["users"].result;
+      this.pagination = data["users"].pagination;
     });
     console.log(this.users);
-    this.userParams.gender = this.user.gender === 'female' ? 'male' : 'female';
+    this.userParams.gender = this.user.gender === "female" ? "male" : "female";
     this.userParams.minAge = 18;
     this.userParams.maxAge = 99;
 
-    this.userParams.orderBy = 'lastActive';
+    this.userParams.orderBy = "lastActive";
   }
   resetfilters() {
-    this.userParams.gender = this.user.gender === 'female' ? 'male' : 'female';
+    this.userParams.gender = this.user.gender === "female" ? "male" : "female";
     this.userParams.minAge = 18;
     this.userParams.maxAge = 99;
     this.loadUsers2();
@@ -94,7 +94,7 @@ export class MemberListComponent implements OnInit {
           this.users = result.result;
           this.pagination = result.pagination;
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );
@@ -120,7 +120,7 @@ export class MemberListComponent implements OnInit {
           }
           this.pagination = result.pagination;
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );

@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Pagination, PaginatedResult } from 'src/app/_models/Pagination';
-import { AuthService } from '../_services/auth.service';
-import { AlertifyService } from '../_services/alertify.service';
-import { UserService } from '../_services/user.service';
-import { Message } from '../_models/message';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Pagination, PaginatedResult } from "src/app/_models/Pagination";
+import { AuthService } from "../_services/auth.service";
+import { AlertifyService } from "../_services/alertify.service";
+import { UserService } from "../_services/user.service";
+import { Message } from "../_models/message";
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  selector: "app-messages",
+  templateUrl: "./messages.component.html",
+  styleUrls: ["./messages.component.css"],
 })
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
-  messageContainer = 'Unread';
+  messageContainer = "Unread";
 
   constructor(
     private route: ActivatedRoute,
@@ -24,9 +24,9 @@ export class MessagesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.messages = data['messages'].result;
-      this.pagination = data['messages'].pagination;
+    this.route.data.subscribe((data) => {
+      this.messages = data["messages"].result;
+      this.pagination = data["messages"].pagination;
     });
   }
   loadMessages() {
@@ -43,7 +43,7 @@ export class MessagesComponent implements OnInit {
 
           this.pagination = res.pagination;
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );
@@ -58,10 +58,13 @@ export class MessagesComponent implements OnInit {
       .deleteMessage(this.authService.decodedToken.nameid, messageId)
       .subscribe(
         () => {
-          this.messages.splice(this.messages.findIndex(m => m.id === messageId), 1);
-          this.alertify.success('Message deleted');
+          this.messages.splice(
+            this.messages.findIndex((m) => m.id === messageId),
+            1
+          );
+          this.alertify.success("Message deleted");
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );
