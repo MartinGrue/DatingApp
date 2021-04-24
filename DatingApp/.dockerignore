@@ -1,8 +1,6 @@
 .gitignore
-database_setup.sql
 docker-compose.yaml
 docker-compose-dev.yaml
 Dockerfile
-dump.sql
 bin
 obj

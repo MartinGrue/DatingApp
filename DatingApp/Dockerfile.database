@@ -1,0 +1,5 @@
+FROM mysql
+ENV MYSQL_ROOT_PASSWORD=example
+COPY database_setup.sql /docker-entrypoint-initdb.d/database_setup.sql
+COPY database_dump.sql /docker-entrypoint-initdb.d/database_dump.sql
+CMD ["--default-authentication-plugin=mysql_native_password"]
