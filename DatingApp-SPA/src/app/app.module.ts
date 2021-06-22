@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, Pipe } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -49,6 +49,12 @@ export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
+@Pipe({
+  name: "timeAgo",
+  pure: false,
+})
+export class TimeAgoExtendsPipe extends TimeAgoPipe {}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +68,7 @@ export function tokenGetter() {
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
-    TimeAgoPipe,
+    TimeAgoExtendsPipe,
     MemberMessagesComponent,
   ],
   imports: [
@@ -76,8 +82,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:5000"],
-        blacklistedRoutes: ["localhost:5000/api/auth/register"],
+        allowedDomains: ["localhost:5000"],
+        disallowedRoutes: ["localhost:5000/api/auth/register"],
       },
     }),
     NgxGalleryModule,
