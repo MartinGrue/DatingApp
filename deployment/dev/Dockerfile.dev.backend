@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /app
+# Copy csproj and restore as distinct layers
+COPY DatingApp.sln ./
+
+COPY DatingApp ./DatingApp
+
+WORKDIR /app/DatingApp
+RUN dotnet restore
+ENTRYPOINT ["dotnet", "watch", "run"]
+
+# # Copy everything else and build
+# RUN dotnet publish -c Debug -o /out
+# FROM mcr.microsoft.com/dotnet/aspnet:3.1 as final
+# WORKDIR /app
+# COPY --from=build /out ./
+# WORKDIR /app
+
+# ENTRYPOINT ["dotnet", "API.dll"]

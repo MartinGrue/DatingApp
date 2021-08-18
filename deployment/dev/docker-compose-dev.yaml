@@ -1,0 +1,48 @@
+version: "3.2"
+networks:
+  datingapp:
+services:
+  datingappfrontend:
+    container_name: datingappfrontend
+    build:
+      context: ./../../DatingApp-SPA
+      dockerfile: ./../deployment/dev/Dockerfile.dev.client
+    volumes:
+      - type: bind
+        source: ./../../DatingApp-SPA
+        target: /app/
+    networks:
+      - datingapp
+    ports:
+      - "4200:4200"
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+  datingappbackend:
+    container_name: datingappbackend
+    build:
+      context: ./../..
+      dockerfile: ./deployment/dev/Dockerfile.dev.backend
+    volumes:
+      - ./../..:/app
+      - /app/DatingApp/bin/
+      - /app/DatingApp/obj/
+    networks:
+      - datingapp
+    ports:
+      - "5000:5000"
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+  db:
+    image: mysql
+    container_name: datingdb
+    networks:
+      - datingapp
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./../database_setup.sql:/docker-entrypoint-initdb.d/database_setup.sql
+      - ./../database_dump.sql:/docker-entrypoint-initdb.d/database_dump.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
