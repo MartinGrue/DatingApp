@@ -5,23 +5,16 @@ on:
       - master
 
 jobs:
-  publish:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Set env
-        run: echo "DOCKER_HOST=ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}" >> $GITHUB_ENV
-      - name: HOST
-        run: echo ${{ secrets.DIGITALOCEAN_PUB_SSH_KEY }}
-      - name: Test
-        run: echo $DOCKER_HOST
-      - uses: arwynfr/actions-docker-context@v2
-        with:
-          docker_host: $DOCKER_HOST
-          context_name: "dev-server"
-          ssh_cert: ${{ secrets.DIGITALOCEAN_PUB_SSH_KEY }}
-          ssh_key: ${{ secrets.DIGITALOCEAN_PRIV_SSH_KEY }}
-
-      - run: docker --context dev-server container run -p 80:80 nginx
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DIGITALOCEAN_SSH_HOST }}
+        key: ${{secrets.DIGITALOCEAN_PRIV_SSH_KEY}}
+        script: whoami
     # steps:
     #   - name: Set env
     #     run: echo ::set-env name=DOCKER_HOST::ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}
