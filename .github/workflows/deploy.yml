@@ -11,6 +11,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set env
         run: echo "DOCKER_HOST=ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}" >> $GITHUB_ENV
+      - name: HOST
+        run: echo {{ secrets.DIGITALOCEAN_SSH_HOST }}
       - name: Test
         run: echo $DOCKER_HOST
     # name: "Publish on the development server"
