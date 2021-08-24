@@ -15,17 +15,17 @@ jobs:
         run: echo ${{ secrets.DIGITALOCEAN_PUB_SSH_KEY }}
       - name: Test
         run: echo $DOCKER_HOST
-    # name: "Publish on the development server"
+      - name: "Publish on the development server"
+      - uses: arwynfr/actions-docker-context@v2
+        with:
+          docker_host: $DOCKER_HOST
+          context_name: "dev-server"
+          ssh_cert: ${{ secrets.DIGITALOCEAN_PUB_SSH_KEY }}
+          ssh_key: ${{ secrets.DIGITALOCEAN_PRIV_SSH_KEY }}
+
+      - run: docker --context dev-server container run -p 80:80 nginx
     # steps:
     #   - name: Set env
     #     run: echo ::set-env name=DOCKER_HOST::ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}
     #   - name: Test
     #     run: echo $DOCKER_HOST
-    # - uses: arwynfr/actions-docker-context@v2
-    #   with:
-    #     docker_host: "ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}"
-    #     context_name: "dev-server"
-    #     ssh_cert: ${{ secrets.DIGITALOCEAN_PUB_SSH_KEY }}
-    #     ssh_key: ${{ secrets.DIGITALOCEAN_PRIV_SSH_KEY }}
-
-    # - run: docker --context dev-server container run -p 80:80 nginx
