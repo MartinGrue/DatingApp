@@ -12,7 +12,7 @@ jobs:
       - name: Set env
         run: echo "DOCKER_HOST=ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}" >> $GITHUB_ENV
       - name: HOST
-        run: echo ${{ secrets.DIGITALOCEAN_SSH_HOST }}
+        run: echo ${{ secrets.DIGITALOCEAN_PUB_SSH_KEY }}
       - name: Test
         run: echo $DOCKER_HOST
     # name: "Publish on the development server"
