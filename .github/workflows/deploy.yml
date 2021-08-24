@@ -15,7 +15,7 @@ jobs:
         host: ${{ secrets.DIGITALOCEAN_SSH_HOST }}
         username: "root"
         key: ${{secrets.DIGITALOCEAN_PRIV_SSH_KEY}}
-        script: docker container run -p 80:80 nginx
+        script: docker container run -d -p 80:80 nginx
     # steps:
     #   - name: Set env
     #     run: echo ::set-env name=DOCKER_HOST::ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}
