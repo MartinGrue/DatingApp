@@ -12,7 +12,7 @@ jobs:
 
     - uses: arwynfr/actions-docker-context@v2
       with:
-        docker_host: ${{ secrets.DIGITALOCEAN_SSH_HOST }}
+        docker_host: "ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}"
         context_name: 'dev-server'
         ssh_cert: ${{ secrets.DIGITALOCEAN_PUB_SSH_KEY }}
         ssh_key: ${{ secrets.DIGITALOCEAN_PRIV_SSH_KEY }}
