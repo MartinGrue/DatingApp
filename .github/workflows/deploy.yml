@@ -8,7 +8,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: arwynfr/actions-docker-context@v2
       - name: Set env
         run: echo "DOCKER_HOST=ssh://root@${{ secrets.DIGITALOCEAN_SSH_HOST }}" >> $GITHUB_ENV
       - name: HOST
@@ -16,7 +16,6 @@ jobs:
       - name: Test
         run: echo $DOCKER_HOST
       - name: "Publish on the development server"
-      - uses: arwynfr/actions-docker-context@v2
         with:
           docker_host: $DOCKER_HOST
           context_name: "dev-server"
