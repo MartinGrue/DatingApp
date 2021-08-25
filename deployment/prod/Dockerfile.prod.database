@@ -1,0 +1,6 @@
+#BUILD THIS IMAGE WITH DOCKERBUILDKIT OR INGORE FILES WILL BE IGNORED
+FROM mysql
+ENV MYSQL_ROOT_PASSWORD=example
+COPY ./deployment/database_setup.sql /docker-entrypoint-initdb.d/database_setup.sql
+COPY ./deployment/database_dump.sql /docker-entrypoint-initdb.d/database_dump.sql
+CMD ["--default-authentication-plugin=mysql_native_password"]

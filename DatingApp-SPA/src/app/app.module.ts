@@ -44,6 +44,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { OwlModule } from "ngx-owl-carousel";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { CollapseModule } from "ngx-bootstrap/collapse";
+import { environment } from "src/environments/environment";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -82,8 +83,8 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5000"],
-        disallowedRoutes: ["localhost:5000/api/auth/register"],
+        allowedDomains: [environment.apiDomain],
+        disallowedRoutes: [`${environment.apiDomain}/api/auth/register`],
       },
     }),
     NgxGalleryModule,
