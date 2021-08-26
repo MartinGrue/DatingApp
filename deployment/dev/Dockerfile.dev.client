@@ -1,5 +1,7 @@
+#This file should be called frontend
 FROM node:alpine
 WORKDIR /app
 COPY package.json .
+COPY . .
 RUN npm install -g @angular/cli@12.0.5
 CMD ng serve --host 0.0.0.0

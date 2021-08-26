@@ -32,7 +32,7 @@ services:
       - "5000:5000"
     stdin_open: true # docker run -i
     tty: true # docker run -t
-  db:
+  datingdb:
     image: mysql
     container_name: datingdb
     networks:
