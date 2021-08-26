@@ -12,11 +12,15 @@ jobs:
       REPO_NAME: datingapp
       IMAGE_NAME: datingappfrontend
     steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
       - name: Checkout master
         uses: actions/checkout@master
 
       - name: link .dockerignore
-        run: ln -fs ./deployment/prod/Dockerfile.prod.database.dockerignore .dockerignore
+        run: ln -fs ./deployment/prod/Dockerfile.prod.frontend.dockerignore .dockerignore
 
       - name: Build container image
         run: |
