@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   user: User;
   registerForm: FormGroup;
   bsconfig: Partial<BsDatepickerConfig>;
+  bsValue = new Date();
 
   constructor(
     private authService: AuthService,
@@ -49,7 +50,7 @@ export class RegisterComponent implements OnInit {
         gender: ["male"],
         username: ["", Validators.required],
         knownAs: ["", Validators.required],
-        dateOfBirth: ["null", Validators.required],
+        dateOfBirth: [this.bsValue, Validators.required],
         city: ["", Validators.required],
         country: ["", Validators.required],
         password: [
