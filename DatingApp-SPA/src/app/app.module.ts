@@ -41,7 +41,6 @@ import { MessageResolver } from "./_resolver/messages.resolver";
 import { MemberMessagesComponent } from "./members/member-messages/member-messages.component";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { OwlModule } from "ngx-owl-carousel";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { CollapseModule } from "ngx-bootstrap/collapse";
 import { environment } from "src/environments/environment";
@@ -94,7 +93,6 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     InfiniteScrollModule,
     ButtonsModule.forRoot(),
     BrowserAnimationsModule,
-    OwlModule,
     CarouselModule.forRoot(),
     CollapseModule.forRoot(),
   ],

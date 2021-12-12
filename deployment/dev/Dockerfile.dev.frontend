@@ -1,8 +1,6 @@
 #This file should be called frontend
 FROM node:16.13.1-alpine
+USER node
 WORKDIR /app
-COPY package.json .
-COPY . .
-RUN npm install
 EXPOSE 4200
 CMD npx ng serve --host 0.0.0.0 --port 4200
