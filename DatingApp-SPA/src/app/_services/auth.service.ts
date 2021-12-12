@@ -11,7 +11,6 @@ import { BehaviorSubject } from "rxjs";
 })
 export class AuthService {
   baseUrl = environment.apiUrl + "auth/";
-  // baseUrl = 'http://localhost:5000/api/auth/';
   jwthelper = new JwtHelperService();
   decodedToken: any;
   Currentuser: User;

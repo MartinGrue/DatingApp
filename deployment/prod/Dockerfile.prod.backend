@@ -16,10 +16,11 @@ RUN adduser -D $USER
 
 # Add some libs required by .NET runtime 
 RUN apk add --no-cache libstdc++ libintl icu
-EXPOSE 80
-EXPOSE 443
+
 WORKDIR /app
 COPY --from=build /out ./
+EXPOSE 5000
+
 USER $USER
 # Run .net as elf 64-bit binary
 ENTRYPOINT ["./DatingApp"]

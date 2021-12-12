@@ -1,1 +1,12 @@
-DatinApp-SPA
+**/.git
+**/.devcontainer
+**/.github
+**/.vs
+**/.vscode
+**/.github
+
+**/deployment
+
+**/DatingApp-SPA
+**/bin
+**/obj

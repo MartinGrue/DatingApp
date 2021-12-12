@@ -1,11 +1,12 @@
-***/.git
+**/.git
 **/.devcontainer
 **/.github
 **/.vs
 **/.vscode
 **/.github
-**/docker-compose*
-**/Dockerfile*
+
+**/deployment
 
 **/DatingApp
-**/DatingApp-SPA
+**/node_modules
+**/build

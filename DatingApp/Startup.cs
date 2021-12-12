@@ -150,10 +150,7 @@ namespace DatingApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapFallbackToController("Index", "Fallback");
             });
-            // app.UseMvc(routes => routes.MapSpaFallbackRoute(name: "spa-fallback",
-            // defaults: new { controller = "Fallback", action = "Index" }));
         }
     }
 }

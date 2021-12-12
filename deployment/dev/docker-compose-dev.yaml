@@ -1,24 +1,25 @@
 version: "3.2"
 networks:
   datingapp:
+
 services:
-  datingappfrontend:
-    container_name: datingappfrontend
+  frontendapp:
     build:
       context: ./../../DatingApp-SPA
-      dockerfile: ./../deployment/dev/Dockerfile.dev.client
+      dockerfile: ./../deployment/dev/Dockerfile.dev.frontend
     volumes:
-      - type: bind
-        source: ./../../DatingApp-SPA
-        target: /app/
+      - ./../../DatingApp-SPA:/app/
     networks:
       - datingapp
     ports:
       - "4200:4200"
     stdin_open: true # docker run -i
     tty: true # docker run -t
-  datingappbackend:
-    container_name: datingappbackend
+
+  backendapp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+      - DOTNET_ENVIRONMENT=development
     build:
       context: ./../..
       dockerfile: ./deployment/dev/Dockerfile.dev.backend
@@ -32,6 +33,7 @@ services:
       - "5000:5000"
     stdin_open: true # docker run -i
     tty: true # docker run -t
+    
   datingdb:
     image: mysql
     container_name: datingdb

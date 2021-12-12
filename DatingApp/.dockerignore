@@ -1,6 +1,0 @@
-.gitignore
-docker-compose.yaml
-docker-compose-dev.yaml
-Dockerfile
-bin
-obj

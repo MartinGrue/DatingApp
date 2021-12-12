@@ -1,12 +1,11 @@
 #BUILD THIS IMAGE WITH DOCKERBUILDKIT OR INGORE FILES WILL BE IGNORED
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM node:alpine as build-stage
+FROM node:16.13.1-alpine as build-stage
 WORKDIR /app
 COPY ./DatingApp-SPA/package.json .
-RUN npm install -g @angular/cli@12.0.5
 RUN npm install --verbose
 COPY ./DatingApp-SPA/ .
-RUN ng build --configuration=production
+RUN npx ng build --configuration=production
 
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx

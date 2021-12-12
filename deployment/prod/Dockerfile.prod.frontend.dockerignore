@@ -1,2 +1,12 @@
+**/.git
+**/.devcontainer
+**/.github
+**/.vs
+**/.vscode
+**/.github
+
+
 **/node_modules
-DatingApp
+**/build
+
+**/DatingApp

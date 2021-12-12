@@ -1,3 +1,11 @@
 # IDE - VSCode
 .vscode/*
 **/test
+
+
+**/bin
+*.db
+**/obj
+
+**/node_modules
+**/build

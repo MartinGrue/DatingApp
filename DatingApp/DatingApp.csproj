@@ -4,9 +4,6 @@
     <StartupObject>DatingApp.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="wwwroot"/>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0"/>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0"/>
