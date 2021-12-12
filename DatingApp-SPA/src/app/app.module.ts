@@ -44,6 +44,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { CollapseModule } from "ngx-bootstrap/collapse";
 import { environment } from "src/environments/environment";
+import { RedirectGuard } from "./_guards/redirect.guard";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -101,6 +102,7 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     ErrorInterceptorProvider,
     AlertifyService,
     AuthGuard,
+    RedirectGuard,
     UserService,
     MemberDetailResolver,
     MemberListResolver,

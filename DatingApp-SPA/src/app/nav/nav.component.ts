@@ -22,6 +22,8 @@ export class NavComponent implements OnInit {
     this.authService.currentPhotoUrl.subscribe((purl) => {
       this.photourl = purl;
     });
+    this.model.username = "Nichole";
+    this.model.password = "password";
   }
   login() {
     this.authService.login(this.model).subscribe(
