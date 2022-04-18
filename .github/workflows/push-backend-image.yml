@@ -1,5 +1,6 @@
 name: push-backend-image
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
