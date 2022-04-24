@@ -16,8 +16,8 @@ DOCKER_BUILDKIT=1
 COMPOSE_DOCKER_CLI_BUILD=1
 
 
-if [[ $1 == "up" ]] && [[ $DETACHED == false ]]; then
-    docker-compose -f $2 up --build; docker-compose -f $2 down
+if [[ $2 == "up" ]] && [[ $DETACHED == false ]]; then
+    docker-compose -f $1 up --build; docker-compose -f $1 down
 else
     break
 fi
